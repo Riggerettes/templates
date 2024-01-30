@@ -5,26 +5,17 @@
         > SC1091. We do not need it as the sourced functions will be shellchecked
             when they are changed anyways. And shellcheck do not support dynamic/relative paths.
 #
-TEST_FUNCTION_NAME()
+set -o pipefail # Not using set -e because of: https://github.com/kward/shunit2/issues/174#issuecomment-1916892046
+shopt -s inherit_errexit
+
+gitRootFolder="$(git rev-parse --show-toplevel)"
+srcFolder="$gitRootFolder/PATH_TO_FOLDER_OF_FUNCTION_TO_TEST"
+source "$srcFolder/NAME_OF_FUNCTION_TO_TEST"
+
+testFUNCTION_NAME()
 {
-    set -eo pipefail
-    shopt -s inherit_errexit
-    
-    local __gitRootFolder; __gitRootFolder="$(git rev-parse --show-toplevel)"
-    local __srcFolder; __srcFolder="$__gitRootFolder/src/bash"
-    source "$__srcFolder/trapErr"
-    source "$__srcFolder/validateClusterName"
-    source "$__srcFolder/validatePreReqs"
-    source "$__srcFolder/verifyK8sContext"
-
-    validateClusterName "${__clustername}"
-    validatePreReqs "CMD_NAME"
-    verifyK8sContext "${__clustername}"
-
-    ###########
-    # EXECUTE #
-    ###########
-    local __SOME_ARG_NAME=""
+    local __result; __result=""
+    # YOUR ASSERTION HERE
 }
 
 shunit2Path="$(realpath ~/shunit2)"
