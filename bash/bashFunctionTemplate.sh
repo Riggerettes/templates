@@ -68,7 +68,6 @@ FUNCTION_NAME()
     done
 
     if [[ -z "$__helpUsed" ]]; then
-        source "$__srcFolder/colors"
         source "$__srcFolder/trapErr"
         source "$__srcFolder/validateClusterName"
         source "$__srcFolder/validatePreReqs"
