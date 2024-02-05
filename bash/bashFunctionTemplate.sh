@@ -30,7 +30,7 @@ FUNCTION_NAME()
             > In the examples in the Usage: section below. Add \$? between \"\" to get the exit code of the script and to avoid the parent Bash shell from
             exiting if the exit code is non-zero.
 
-        $(COLOR_STRING "Usage:" "cyan" "bold noprefix")
+        $(COLOR_STRING "Usage:" "cyan" "bold noprefix" "true")
             [1]: (FUNCTION_NAME --PARAMETER=""INPUT"") && echo \"\$?\" || echo \"\$?\"
             >> EXAMPLE_EXPLANATION.
             ======================= || =======================
