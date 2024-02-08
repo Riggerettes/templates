@@ -1,0 +1,13 @@
+# Exclude these folders
+*/docs*
+*/runtime*
+*/templates*
+*/tests*
+
+# Exclude these files
+.editorconfig
+.gitattributes
+.gitconfig
+.gitignore
+LICENSE
+README.md
