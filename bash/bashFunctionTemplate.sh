@@ -50,8 +50,8 @@ FUNCTION_NAME()
                 "type2"
             )
             if [[ ! "${__allowedTypes[*]}" =~ $__SOME_OTHER_VAR ]]; then
-                COLOR_STRING "ERROR: An unsupported value was provided to the [--|-] parameter" "ERROR" "bold"
-                COLOR_STRING "Valid values are: [type1] or [type2]" "ok" "noprefix"
+                COLOR_STRING "An unsupported value was provided to the [--|-] parameter" "ERROR" "bold" >&2
+                COLOR_STRING "Valid values are: [type1] or [type2]" "ok" "noprefix" "warning" "bold" >&2
                 exit 6
             fi
             ;;
