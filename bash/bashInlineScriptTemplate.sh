@@ -15,20 +15,20 @@ source "$srcFolder/badArg"
 source "$srcFolder/colors"
 
 usage="
-    $(COLOR_STRING "Purpose:" "cyan" "bold")
+    $(COLOR_STRING "Purpose:" "cyan" "bold" "true")
         PURPOSE_DESCRIPTION
     
-    $(COLOR_STRING "Options:" "cyan" "bold")
+    $(COLOR_STRING "Options:" "cyan" "bold" "true")
         --LONG_PARAMETER_NAME|-SHORT_PARAMETER_NAME:       [REQUIRED] [STRING] - PARAMETER_EXPLANATION.
 
     $(COLOR_STRING "Switches:" "cyan" "bold")
         --help|-h:                   [OPTIONAL] - Outputs this help section.
 
-    $(COLOR_STRING "Notes:" "orange")
+    $(COLOR_STRING "Notes:" "orange" "true")
         > In the examples in the Usage: section below. Add \$? between \"\" to get the exit code of the script and to avoid the parent Bash shell from
         exiting if the exit code is non-zero.
 
-    $(COLOR_STRING "Usage:" "cyan" "bold noprefix")
+    $(COLOR_STRING "Usage:" "cyan" "bold noprefix" "true")
         [1]: (SCRIPT_NAME --PARAMETER=""INPUT"") && echo \"\$?\" || echo \"\$?\"
         >> EXAMPLE_EXPLANATION.
         ======================= || =======================
