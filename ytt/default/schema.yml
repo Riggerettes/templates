@@ -1,0 +1,12 @@
+#@data/values-schema
+---
+#!
+#! Cluster scope values
+#!
+cluster: ""
+
+clusters:
+
+#!
+#! Global scope values
+#!
