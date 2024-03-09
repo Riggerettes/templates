@@ -16,21 +16,25 @@ FUNCTION_NAME()
     source "$__srcFolder/badArg"
     source "$__srcFolder/colors"
 
+    if [ -t 1 ] || [[ $- == *i* ]]; then
+        local __interactive; __interactive="true"
+    fi
+
     local __usage; __usage="
-        $(COLOR_STRING "Purpose:" "cyan" "bold" "true")
+        $(COLOR_STRING "Purpose:" "cyan" "bold" "${__interactive}")
             PURPOSE_DESCRIPTION
         
-        $(COLOR_STRING "Options:" "cyan" "bold" "true")
+        $(COLOR_STRING "Options:" "cyan" "bold" "${__interactive}")
             --LONG_PARAMETER_NAME|-SHORT_PARAMETER_NAME:        [REQUIRED] [STRING] - PARAMETER_EXPLANATION.
 
-        $(COLOR_STRING "Switches:" "cyan" "bold" "true")
+        $(COLOR_STRING "Switches:" "cyan" "bold" "${__interactive}")
             --help|-h:                                          [OPTIONAL] - Outputs this help section.
 
-        $(COLOR_STRING "Notes:" "orange" "true")
+        $(COLOR_STRING "Notes:" "orange" "${__interactive}")
             > In the examples in the Usage: section below. Add \$? between \"\" to get the exit code of the script and to avoid the parent Bash shell from
             exiting if the exit code is non-zero.
 
-        $(COLOR_STRING "Usage:" "cyan" "bold noprefix" "true")
+        $(COLOR_STRING "Usage:" "cyan" "bold noprefix" "${__interactive}")
             [1]: (FUNCTION_NAME --PARAMETER=""INPUT"") && echo \"\$?\" || echo \"\$?\"
             >> EXAMPLE_EXPLANATION.
             ======================= || =======================
