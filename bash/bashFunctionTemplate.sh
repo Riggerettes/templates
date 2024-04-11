@@ -48,16 +48,15 @@ FUNCTION_NAME()
             ;;
         --example2*|-e2*)
             if [[ "$1" != *=* ]]; then badArg "$1=${2#*=}"; shift; fi
-            local __SOME_OTHER_VAR="${1#*=}"
-            declare -a __allowedTypes=(
-                "type1"
-                "type2"
-            )
-            if [[ ! "${__allowedTypes[*]}" =~ $__SOME_OTHER_VAR ]]; then
-                COLOR_STRING "An unsupported value was provided to the [--|-] parameter" "ERROR" "bold" >&2
-                COLOR_STRING "Valid values are: [type1] or [type2]" "ok" "noprefix" "warning" "bold" >&2
+            local __VARIABLE_NAME="${1#*=}"
+            case $__VARIABLE_NAME in
+                option1|option2|....);;
+                *)
+                COLOR_STRING "An unsupported value was provided to the [--example2|-e2] parameter" "ERROR" "bold" >&2
+                COLOR_STRING "Valid values are: [option1], [option2] or [....]" "ok" "noprefix" >&2
                 exit 6
-            fi
+                ;;
+            esac
             ;;
         --help|-h)
             echo -e "$__usage"
