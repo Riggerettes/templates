@@ -58,7 +58,7 @@ while [ $# -gt 0 ]; do
         helpUsed="true"
         ;;
     *)
-        >&2 printf "Error: Invalid argument\n"
+        COLOR_STRING "Invalid argument\n" "ERROR" "BOLD"
         exit 6
         ;;
     esac
