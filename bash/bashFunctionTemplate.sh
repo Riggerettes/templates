@@ -40,6 +40,15 @@ FUNCTION_NAME()
             ======================= || =======================
     "
 
+    ##
+    # Initialize required variables
+    # to avoid scope creep. Where
+    # variables declared with the same name
+    # in X calling func. is available here.
+    ##
+    local __clustername; __clustername=""
+    local __myOtherRequiredVar; __myOtherRequiredVar=""
+
     while [ $# -gt 0 ]; do
         case "$1" in
         --clustername*|-cname*)
@@ -81,6 +90,11 @@ FUNCTION_NAME()
         validateClusterName "${__clustername}"
         validatePreReqs "CMD_NAME"
         verifyK8sContext --clustername="${__clustername}"
+
+        if [[ -z "${__myOtherRequiredVar+set}" ]]; then
+            COLOR_STRING "__myOtherRequiredVar is unset." "ERROR" "bold"
+            exit 6
+        fi
 
         ###########
         # EXECUTE #
