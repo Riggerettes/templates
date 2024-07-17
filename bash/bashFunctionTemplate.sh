@@ -91,11 +91,6 @@ FUNCTION_NAME()
         validatePreReqs "CMD_NAME"
         verifyK8sContext --clustername="${__clustername}"
 
-        if [[ -z "${__myOtherRequiredVar+set}" ]]; then
-            COLOR_STRING "__myOtherRequiredVar is unset." "ERROR" "bold"
-            exit 6
-        fi
-
         ###########
         # EXECUTE #
         ###########
