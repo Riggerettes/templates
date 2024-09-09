@@ -61,7 +61,7 @@ FUNCTION_NAME()
             case $__VARIABLE_NAME in
                 option1|option2|....);;
                 *)
-                COLOR_STRING "An unsupported value was provided to the [--example2|-e2] parameter" "ERROR" "bold" >&2
+                COLOR_STRING "An unsupported value was provided to the [--example2|-e2] parameter" "ERROR" "bold"
                 COLOR_STRING "Valid values are: [option1], [option2] or [....]" "ok" "noprefix" >&2
                 exit 6
                 ;;
