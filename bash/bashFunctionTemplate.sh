@@ -69,7 +69,7 @@ FUNCTION_NAME()
             ;;
         --help|-h)
             echo -e "$__usage"
-            local __helpUsed="true"
+            exit 0
             ;;
         *)
             COLOR_STRING "Invalid argument\n" "ERROR" "BOLD"
@@ -79,26 +79,24 @@ FUNCTION_NAME()
         shift
     done
 
-    if [[ -z "$__helpUsed" ]]; then
-        source "$__srcFolder/trapErr"
-        source "$__srcFolder/validateClusterName"
-        source "$__srcFolder/validatePreReqs"
-        source "$__srcFolder/verifyK8sContext"
+    source "$__srcFolder/trapErr"
+    source "$__srcFolder/validateClusterName"
+    source "$__srcFolder/validatePreReqs"
+    source "$__srcFolder/verifyK8sContext"
 
-        # The below functions called in the order
-        # of the least compute expensive.
-        validateClusterName "${__clustername}"
-        validatePreReqs "CMD_NAME"
-        verifyK8sContext --clustername="${__clustername}"
+    # The below functions called in the order
+    # of the least compute expensive.
+    validateClusterName "${__clustername}"
+    validatePreReqs "CMD_NAME"
+    verifyK8sContext --clustername="${__clustername}"
 
-        ###########
-        # EXECUTE #
-        ###########
-        local __SOME_ARG_NAME="{$__clustername}"
-        
-        # EXPLAIN_WHAT_IS_BEING_DONE
-        #local __result=$()
+    ###########
+    # EXECUTE #
+    ###########
+    local __SOME_ARG_NAME="{$__clustername}"
+    
+    # EXPLAIN_WHAT_IS_BEING_DONE
+    #local __result=$()
 
-        #echo "$__result"
-    fi # End of conditional on the __helpUsed variable
+    #echo "$__result"
 }
