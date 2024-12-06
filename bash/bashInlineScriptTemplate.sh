@@ -55,7 +55,7 @@ while [ $# -gt 0 ]; do
         ;;
     --help|-h)
         echo -e "$usage"
-        helpUsed="true"
+        exit 0
         ;;
     *)
         COLOR_STRING "Invalid argument\n" "ERROR" "BOLD"
@@ -65,25 +65,23 @@ while [ $# -gt 0 ]; do
     shift
 done
 
-if [[ -z "$helpUsed" ]]; then
-    source "$srcFolder/trapErr"
-    source "$srcFolder/validateClusterName"
-    source "$srcFolder/validatePreReqs"
-    source "$srcFolder/verifyK8sContext"
+source "$srcFolder/trapErr"
+source "$srcFolder/validateClusterName"
+source "$srcFolder/validatePreReqs"
+source "$srcFolder/verifyK8sContext"
 
-    # The below functions called in the order
-    # of the least compute expensive first.
-    validateClusterName "${clustername}"
-    validatePreReqs "CMD_NAME"
-    verifyK8sContext --clustername="${clustername}"
+# The below functions called in the order
+# of the least compute expensive first.
+validateClusterName "${clustername}"
+validatePreReqs "CMD_NAME"
+verifyK8sContext --clustername="${clustername}"
 
-    ###########
-    # EXECUTE #
-    ###########
-    echo "{$rootFolder}"
-    
-    # EXPLAIN_WHAT_IS_BEING_DONE
-    #local __result=$()
+###########
+# EXECUTE #
+###########
+echo "{$rootFolder}"
 
-    #echo "$__result"
-fi # End of conditional on the __helpUsed variable
+# EXPLAIN_WHAT_IS_BEING_DONE
+#local __result=$()
+
+#echo "$__result"
